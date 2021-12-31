@@ -50,7 +50,7 @@ const preloader = async () => {
 }
 
 
-conn.sync({ force: false })
+conn.sync({ force: true })
 .then(() => {
   preloader();
   server.listen(3001, () => {

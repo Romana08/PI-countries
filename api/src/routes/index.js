@@ -4,6 +4,8 @@ const { Op } = require("sequelize");
 
 const router = Router();
 
+
+
 router.get('/countries', async function(req, res, next) {
   const {name} = req.query; 
   if(!name){
@@ -38,12 +40,22 @@ router.get('/countries/:idPais', async function (req, res)  {
 
     });
 
+router.get('/activity', async (req, res, next) => {
+  try {
+        let allActivity = await Activity.findAll()
+        console.log(allActivity)
+        res.json(allActivity)
+      } catch (error) {
+        next(error)
+      }
+    })
+
 router.post('/activity', async function (req, res){
-  const { id, name, dificultad, duracion, temporada, Pais } = req.body; 
+  const { name, difficulty, duration, season, Pais } = req.body; 
   console.log( "-------Empieza-----")
 try {
    const actividad = await Activity.create({
-    id, name, dificultad, duracion, temporada
+    name, difficulty, duration, season
   })
   console.log( "-------Parte 1-----")
   let paisOb = await Country.findAll({
@@ -53,7 +65,9 @@ try {
   })
   // paisOb = paisOb[0].dataValues
   console.log( "-------Parte 2-----")
-  paisOb.addActivity(actividad); 
+
+  await actividad.addCountry(paisOb)
+  // paisOb.addActivity(actividad); 
    res.json("Actividad guardada")
   console.log("333333333333333333333333333333333")
   return res.status(200).json( "Actividad Guardada", (Activity));
