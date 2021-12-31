@@ -1,25 +1,85 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+//import Paginado from './component/paginado/paginado';
+// import { BrowserRouter ,Route, Switch } from 'react-router-dom';
+import Home from './component/Home/Home';
+import LandingPage from './component/LandingPage/Landing';
+import { CreateActivity } from './component/Activity/createActivity';
+function App(){
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+  return (           
+
+    <Router>
+      <div className="App">
+      <Routes>
+          <Route exact path="/" element={ <LandingPage/>} />
+          <Route path="/home" element={<Home/>} />
+          <Route path="/activity" element={<CreateActivity/>} />
+          
+      </Routes>
+      </div>
+    </Router>   
+
   );
+  // return (
+  //   <div className='App'>
+  //     <h1>
+  //       Countries App
+  //     </h1> 
+  //     <Paginado/>
+  //     <LandingPage/>
+  //     <Home/>
+     
+  //   </div>
+  // )
 }
-
 export default App;
+
+
+
+// import React, { useEffect , useState}from 'react';
+// import { connect } from 'react-redux';
+// import Home from './component/Home/Home'; 
+// import {Switch} from 'react-router-dom';
+// //import Country from './component/Country/Country';
+// // import './App.css';
+// // import NavBar from './component/NavBar';
+// import { getCountries } from './redux/acciones'; 
+// import Countries from './component/Countries/Countries';
+
+// function App() {
+//   //{traerpaises}
+//   // const datoBd = "http://localhost:3001/countries";
+//   // const [country, setCountry] = useState();
+//   // const fetchApi = async () =>{
+//   //   const response = await fetch (datoBd)
+//   //   console.log(response.status);
+//   //   const responseJSON = await response.json();
+//   //   setCountry (responseJSON); 
+//   //   console.log(responseJSON);
+
+//   // }
+//   // useEffect(()=>{
+//   //   traerpaises(); 
+//   // }, [])
+//   return (
+//     <div className='App'>
+
+//       Hola Mundo
+      
+//       <hr/>
+//       <Home/>
+//      </div>
+//   )
+ 
+// //   }
+// //   const mapDispatchToProps = (dispatch) =>{
+// //     return {
+// //         traerpaises : () => dispatch(getCountries)
+// //     }
+// // }
+
+
+// export default App;
+// // export default connect(null, mapDispatchToProps) (App)
