@@ -23,14 +23,14 @@ router.get('/countries', async function(req, res, next) {
 });
 
 
-router.get('/countries/:idPais', async function (req, res)  {
+router.get('/countries/:id', async function (req, res)  {
   console.log( "empieza")
-    let { idPais } = req.params;
-    console.log( idPais)
+    let { id } = req.params;
+    console.log( id)
     // Country.findByPk((idPais, {include: {model: Activities}}))ç
     const countries = await Country.findOne({
       where: {
-        id: idPais.toUpperCase()
+        id: id.toUpperCase()
       },
       include:[Activity]
     
@@ -51,16 +51,16 @@ router.get('/activity', async (req, res, next) => {
     })
 
 router.post('/activity', async function (req, res){
-  const { name, difficulty, duration, season, Pais } = req.body; 
+  const { name, difficulty, duration, season, population, countries } = req.body; 
   console.log( "-------Empieza-----")
 try {
    const actividad = await Activity.create({
-    name, difficulty, duration, season
+    name, difficulty, duration, season, population
   })
   console.log( "-------Parte 1-----")
   let paisOb = await Country.findAll({
     where:{
-      id: Pais 
+      id: countries 
     }
   })
   // paisOb = paisOb[0].dataValues

@@ -32,7 +32,10 @@ module.exports = (sequelize) => {
     },
     area: {
       type: DataTypes.INTEGER,
-    },       
+    }, 
+    population : {
+      type: DataTypes.INTEGER,
+    },   
   }, {
     timestamps: false,
 })

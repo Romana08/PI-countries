@@ -28,7 +28,7 @@ const preloader = async () => {
 
     for (let country of countries.data) {
 
-      let {cca3, name, flags, capital, region, subregion, area} = country;
+      let {cca3, name, flags, capital, region, subregion, area, population} = country;
       let [countryRes, created] = await Country.findOrCreate({
         where: {
           id: cca3,
@@ -39,6 +39,7 @@ const preloader = async () => {
           region: region, 
           subregion: subregion? subregion : null, 
           capital: capital ? capital[0] : null,
+          population: population,
           area,
         }  
       });
@@ -50,13 +51,19 @@ const preloader = async () => {
 }
 
 
-conn.sync({ force: true })
-.then(() => {
-  preloader();
+conn.authenticate().then(() => { 
   server.listen(3001, () => {
-    console.log('%s listening at 3001');
-  });
-});
+        console.log('%s listening at 3001'); // eslint-disable-line no-console
+      })
+    })
+
+// conn.sync({ force: true })
+// .then(() => {
+//   preloader();
+//   server.listen(3001, () => {
+//     console.log('%s listening at 3001');
+//   });
+// });
 
 
 module.exports = {preloader};
