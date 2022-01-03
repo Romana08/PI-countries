@@ -1,0 +1,35 @@
+.fondo{
+    background-color: gray;
+}
+    
+.boxx{
+    background-color: rgba(53, 3, 73, 0.637);
+
+    border-radius: 3%;
+    border: solid 2px #0a0a0a;
+    /* box-shadow: 10px 10px 20px 1px rgba(112, 112, 112, 0.2); */
+    margin:auto;
+    padding: 20px 0px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.image {
+    margin: 2%;
+}
+.name{
+    color: rgb(212, 173, 252);
+    -webkit-text-stroke-color: ivory;
+    display:inline;
+    font-size: 20px;
+}
+
+.contein{
+    text-align: left;
+    /* font-family: "ge body"; */
+    font-size: 16%;
+    margin: 0px;
+    padding: -5px;
+    color: #656263;
+
+}

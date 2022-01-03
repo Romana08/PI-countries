@@ -6,6 +6,7 @@ export const ORDER_BY_COUNTRY ='ORDER_BY_COUNTRY ';
 export const GET_ACTIVITY = 'GET_ACTIVITY'; 
 export const FILTER_COUNTRIES_BY_REGION= 'FILTER_COUNTRIES_BY_REGION'; 
 export const FILTER_CREATED = 'FILTER_CREATED';
+export const ORDER_BY_COUNTRY_POPULATION = 'ORDER_BY_COUNTRY_POPULATION';
 export const POST_ACTIVITY = 'POST_ACTIVITY'
 
 // FALTARIAN LAS DE LAS ACTIVIDADES 
@@ -35,26 +36,18 @@ export function getCountries() {
         
     }}
     
-    export function getCountriesDetail(id){
-        return async function (dispatch){
-        try {
-        let json = await axios.get(`http://localhost:3001/countries/${id}`)
-        return dispatch ({
-            type: DETAIL_COUNTRY, 
-            payload: json.data
-        })
-         
-    } catch (error) {
-        console.log(error);
-    }
-    
-}}
-    
+
     //no lo terminé de usar
     
     export function orderCountries(payload){
         return {
-            type : 'ORDER_BY_COUNTRY', 
+            type : ORDER_BY_COUNTRY, 
+            payload
+        }
+    }
+    export function orderByPopulation(payload){
+        return{
+            type: ORDER_BY_COUNTRY_POPULATION,
             payload
         }
     }
@@ -73,10 +66,15 @@ export function getCountries() {
                 dispatch({ type: GET_ACTIVITY, payload: response.data})
             })
         }}
+
+
     export function postActivity(payload){
-        return async function (){
+        return async function (dispatch){
             const res =  await axios.post ('http://localhost:3001/activity', payload)
-            console.log(res)
+            dispatch({
+                type: POST_ACTIVITY,
+                payload: res.data
+            })
             return res; 
         }
     }
@@ -87,5 +85,21 @@ export function getCountries() {
             payload 
         }
     }
+
+    export function getCountriesDetail(id){
+        return async function (dispatch){
+        try {
+        let json = await axios.get(`http://localhost:3001/countries/${id}`)
+        return dispatch ({
+            type: DETAIL_COUNTRY, 
+            payload: json.data
+        })
+         
+    } catch (error) {
+        console.log(error);
+    }
+    
+}}
+    
 
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getCountriesName} from '../../redux/acciones';
+import './search.css';
 
 export default function SearchBar(){
     const dispatch = useDispatch();
@@ -16,13 +17,13 @@ function handleOnClick(e){
 }
 
 return(
-    <div>
-        <input 
+    <div className="search">
+        <input className="botForm"
         type = "text"
         placeholder="Ingrese nombre del Pais..."
         onChange={(e) => handleInputChange(e) }
         />
-        <button onClick = {(e) => handleOnClick(e)}>Buscar</button>
+        <button onClick = {(e) => handleOnClick(e)}className="botForm">Buscar</button>
     </div>
 )
 }

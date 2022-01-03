@@ -1,7 +1,8 @@
-import { getCountries, postActivity } from '../../redux/acciones'
 import React, { useEffect, useState } from 'react'
+import { getCountries, postActivity } from '../../redux/acciones'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './style.css';
 
 export function CreateActivity() {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ export function CreateActivity() {
   }, [dispatch])
 
   function handleSubmit(e) {
+    console.log(activities);
     dispatch(postActivity(activities))
     setActivities(
         { name: '',  difficulty: '', duration: '', season: '', countries: [],}
@@ -51,12 +53,16 @@ export function CreateActivity() {
       [e.target.name]: e.target.value,
     })
   }
-  function handleDelete(el){
+
+  const [country, setCountry] = useState([]);
+
+  function handleDelete(id){
     setActivities({
       ...activities,
-      countries: activities.countries.filter (country => country !== el)
+      countries: activities.countries.filter (el => el !== id)
     })
-
+    let filtered = country.filter(el => el.id !== id);
+        setCountry(filtered);
   }
 
   function handleSelect(e) {
@@ -67,14 +73,16 @@ export function CreateActivity() {
   }
 
   return (
-    <>
-      
+
+    <div className='head'>
       <section>
+        <div className='entorno'>
         <form>
           <h2>Agregar actividad</h2>
-          <div>
+          <div className='form'>
             <label htmlFor="name">Nombre de la Actividad: </label>
             <input
+              className='botForm'
               onChange={handleChange}
               value={activities.name}
               name="name"
@@ -84,9 +92,10 @@ export function CreateActivity() {
             <br></br>
           </div>
 
-          <div>
+          <div className='season'>
             <label htmlFor="season">Temporadad de Actividad: </label>
             <select
+            className='botForm'
               onChange={handleChange}
               key={activities.season}
               // value={activity.season}
@@ -104,9 +113,10 @@ export function CreateActivity() {
             <br></br>
           </div>
 
-          <div>
+          <div className='duration'>
             <label>Tiempo de Duración: </label>
             <input
+            className='botForm'
               onChange={handleChange}
               value={activities.duration}
               id="duration"
@@ -121,6 +131,7 @@ export function CreateActivity() {
           <div>
             <label htmlFor="difficulty">Nivel de dificultad </label>
             <select
+            className='botForm'
               onChange={handleChange}
               key={activities.difficulty}
               // value={activity.difficulty}
@@ -139,9 +150,10 @@ export function CreateActivity() {
             <br></br>
           </div>
 
-          <div>
+          <div className='Act_Coun'>
             <label onChange={handleChange}>Actividad por País: </label>
             <select
+            className='botForm'
               onChange={handleSelect}
               key={activities.countries}
               // value={activity.countries}
@@ -152,7 +164,7 @@ export function CreateActivity() {
               required="required"
             >
               {console.log(countries)}
-              <option value="All">Choose Activity Countries</option>
+              <option value="All">Escoja un País</option>
 
               {countries.map(c => (
                 <option key={c.id} value={c.id}>
@@ -164,28 +176,33 @@ export function CreateActivity() {
           </div>
           <ul>
             <li>
-              {activities.countries.map(c => `${c} ✅`)}
+              {activities.countries.map(c => `${c} 🚩`)}
             </li>
           </ul>
           <div>
             <Link to="/home" style={{ textDecoration: 'none' }}>
-              <button>Back to Home</button>
+              <button className='botForm'>Back to Home</button>
             </Link>
             {error.name || error.season ? (
               <span>Se ha detectado un error</span>
             ) : null}
-            <button onClick={handleSubmit}>Agregar Actividad</button>
+            <button onClick={handleSubmit} className='botForm'>Agregar Actividad</button>
           </div>
-        </form>
+       
             {activities.countries.map(el=>
-              <div>
-                <p>{el}</p>
-                <button onClick= {() => handleDelete }>x</button>
-              </div>)}
-
-
+              <div className='country'>
+                <p>{el} {el.flag}</p>
+                <img  src={el.flag} alt="flag" />
+                <button onClick= {() => handleDelete(el.id) }>x</button>
+              
+              </div>
+              )}
+        </form>
+              </div>
       </section>
-    </>
+   
+      
+    </div>
   )
 }
 

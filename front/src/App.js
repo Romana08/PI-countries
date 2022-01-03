@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // import { BrowserRouter ,Route, Switch } from 'react-router-dom';
 import Home from './component/Home/Home';
 import LandingPage from './component/LandingPage/Landing';
-import { CreateActivity } from './component/Activity/createActivity';
+import { CreateActivity } from './component/CreateActivity/createActivity';
+import CountryDetail from './component/details/details'; 
 function App(){
 
 
@@ -16,6 +17,10 @@ function App(){
           <Route exact path="/" element={ <LandingPage/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/activity" element={<CreateActivity/>} />
+          <Route path="/countries/:id" element={<CountryDetail/>} />
+
+
+          {/* <Route path="" element = {<details/>} /> */}
           
       </Routes>
       </div>

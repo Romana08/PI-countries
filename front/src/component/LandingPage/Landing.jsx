@@ -7,13 +7,12 @@ import '../LandingPage/LandingPage.css'
 export default function LandingPage(){
     return (
         <div className='Landing'>
-
-            <h1 className='saludo'>Bienvenidos</h1>
-            <div className='contein'>
+            <div className='saludo'>
+            <h1>Bienvenidos</h1>
             <Link to="/home" style={{ textDecoration: 'none' }}>
               <button className='boton'>Ingresar</button>
-            </Link>
-        </div>
-        </div>
+            </Link></div>
+           
+      </div>      
     )
 }

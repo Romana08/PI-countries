@@ -30,8 +30,8 @@
 }
 .boton{
  flex-direction: row;
- margin-top: auto;
- margin-left:auto;
+ /* margin-top: auto;
+ margin-left:auto; */
  border-radius: 8%;
  display: inline-block;
  padding: 18px 18px;
@@ -45,7 +45,7 @@
 
 }
 .boton:hover{
-  background:rgb(186, 186, 245) ;
-  box-shadow: 0 0 10px rgb(186, 186, 245),
-  0 0 40px rgb(186, 186, 245), 0 0 80px rgb(186, 186, 245);
+  background:rgba(111, 1, 126, 0.76) ;
+  box-shadow: 0 0 10px rgba(38, 4, 43, 0.76),
+  0 0 40px rgba(111, 1, 126, 0.76), 0 0 80px rgba(111, 1, 126, 0.76);
 }

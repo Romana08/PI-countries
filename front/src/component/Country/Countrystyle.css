@@ -1,0 +1,59 @@
+
+.box{
+    background-color: rgba(53, 3, 73, 0.637);
+
+    border-radius: 3%;
+    border: solid 2px #0a0a0a;
+    box-shadow: 10px 10px 20px 1px rgba(112, 112, 112, 0.2);
+    margin: 10px 3px 30px 5px;
+    /* margin-left: 2%;
+    margin-top: 2%;
+    margin-right: 2%; */
+    padding: 20px 0px;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.image {
+    margin: 2%;
+}
+.name{
+    color: rgb(212, 173, 252);
+    -webkit-text-stroke-color: ivory;
+    display:inline;
+    font-size: 20px;
+}
+
+.contein{
+    text-align: left;
+    /* font-family: "ge body"; */
+    font-size: 16%;
+    margin: 0px;
+    padding: -5px;
+    color: #656263;
+
+}
+.box:hover {
+    margin: -2px;
+    padding: 25px;
+    box-shadow: 20px 20px 20px 1px rgba(112, 112, 112, 0.4);
+  
+    /* background-image: url("../img/230318-black-textured-wallpaper-top-free-black-textured-background.jpg"); */
+  }
+.boton1{
+    margin: auto;
+    flex-direction: row;
+    border-radius: 8%;
+    display:inline-flex;
+    padding: 3px 3px 3px 9px;
+    background-color: rgba(1, 1, 43, 0.829);
+    color: rgb(142, 155, 231);
+    letter-spacing: 10px;
+    font-size: 10px;
+    transition: 0,2s;
+}
+.boton1:hover{
+    background:rgba(111, 1, 126, 0.76) ;
+    box-shadow: 0 0 10px rgba(38, 4, 43, 0.76),
+    0 0 40px rgba(111, 1, 126, 0.76), 0 0 80px rgba(111, 1, 126, 0.76);
+  }

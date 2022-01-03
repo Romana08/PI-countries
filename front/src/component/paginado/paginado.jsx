@@ -9,7 +9,7 @@ export default function Paginado ({countriesForPage, todosLosPaises, paginado}) 
         pagNum.push(i+1)
     }
     return (
-        <nav>
+        <nav className="barraNav">
             <div className= "container">
             <ul className="paginado">
                 {pagNum && pagNum.map( (number) => (

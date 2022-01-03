@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable default-case */
 import {
      GET_COUNTRIES, 
@@ -6,6 +7,8 @@ import {
      GET_ACTIVITY, 
      POST_ACTIVITY,
      GET_COUNTRIES_NAME,
+     ORDER_BY_COUNTRY,
+     ORDER_BY_COUNTRY_POPULATION, 
      DETAIL_COUNTRY
 
 } from './acciones.js';
@@ -57,13 +60,75 @@ import {
                     countries: action.payload
                 }
 
+            case ORDER_BY_COUNTRY:
+                let sortarray = action.payload === "asc" ?
+                state.countries.sort(function (a,b){
+                    if(a.name > b.name){
+                        return 1
+                    }
+                    if(a.name < b.name){
+                        return -1
+                    }
+                    if(a.name === b.name){
+                        return 0
+                    }
+                }): 
+                state.countries.sort(function (a,b){
+                    if(a.name < b.name){
+                        return 1
+                    }
+                    if(a.name > b.name){
+                        return -1
+                    }
+                    if(a.name === b.name){
+                        return 0
+                    }
+                })
+
+                return{
+                    ...state, 
+                    orderCountries: sortarray
+                }
+
+                case ORDER_BY_COUNTRY_POPULATION:
+                    let sortarrayp = action.payload === "population_asc" ?
+                    state.countries.sort(function (a,b){
+                        if(a.population > b.population){
+                            return 1
+                        }
+                        if(a.population < b.population){
+                            return -1
+                        }
+                        if(a.population === b.population){
+                            return 0
+                        }
+                    }): 
+                    state.countries.sort(function (a,b){
+                        if(a.population < b.population){
+                            return 1
+                        }
+                        if(a.population > b.population){
+                            return -1
+                        }
+                        if(a.population === b.population){
+                            return 0
+                        }
+                    })
+    
+                    return{
+                        ...state, 
+                        orderCountries: sortarrayp
+                    }
+
             case POST_ACTIVITY: 
             return {
                 ...state
             }
+
             case DETAIL_COUNTRY: 
             return{
                 ...state,
+                countries: action.payload,
                 detail: action.payload
             }
 
