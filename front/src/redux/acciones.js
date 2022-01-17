@@ -70,16 +70,20 @@ export function getCountries() {
 
     export function postActivity(payload){
         return async function (dispatch){
-            const res =  await axios.post ('http://localhost:3001/activity', payload)
+            const res =  await axios.post('http://localhost:3001/activity', payload)
+
             dispatch({
                 type: POST_ACTIVITY,
                 payload: res.data
             })
             return res; 
+            
         }
     }
-        
+          
+    
     export function filterCreated(payload){
+        console.log("3555151151551155151551155",payload, "3555151151551155151551155");
         return{
             type: FILTER_CREATED,
             payload 

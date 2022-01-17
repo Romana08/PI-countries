@@ -5,8 +5,8 @@ import "./paginado.css"
 export default function Paginado ({countriesForPage, todosLosPaises, paginado}) {
     let pagNum = []
 
-    for(let i = 0;  i<=Math.ceil(todosLosPaises / countriesForPage); i++){
-        pagNum.push(i+1)
+    for(let i = 0;  i <= Math.ceil(todosLosPaises / countriesForPage)-1; i++){
+        pagNum.push(i +1)
     }
     return (
         <nav className="barraNav">
@@ -14,7 +14,7 @@ export default function Paginado ({countriesForPage, todosLosPaises, paginado}) 
             <ul className="paginado">
                 {pagNum && pagNum.map( (number) => (
                     <ul className="number" key= {number}>
-                    <a href= "#/" onClick={()=> paginado(number)}>{number}</a>
+                    <button className="bot"  href= "#/" onClick={()=> paginado(number)}>{number}</button>
                     </ul>
                 ))}
             </ul>

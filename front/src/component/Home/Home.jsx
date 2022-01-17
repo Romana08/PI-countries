@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import { useEffect, useState } from "react";
+import React, { Fragment,  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -21,11 +20,13 @@ export default function Home() {
   const activities = useSelector((state) => state.activities);
   // eslint-disable-next-line no-unused-vars
   const [order, setOrder] = useState("");
+
+
   //creo estados locales. 1º un estado con la pag actual y un stado que me setee esa pag- seteo en 1
   const [currentPage, setCurrentPage] = useState(1);
   //paises por pag, que setee los paises xpag
   // eslint-disable-next-line no-unused-vars
-  const [countriesForPage, setCountriesForPage] = useState(10);
+  const [countriesForPage, setCountriesForPage] = useState(9);
   //indice del ultimo pais /
   const indexOfLastCountries = currentPage * countriesForPage; //10
   //indice del 1º pais
@@ -45,10 +46,8 @@ export default function Home() {
     dispatch(getActivities());
   }, [dispatch]);
   //funcion del boton "volver"
-  function handlerClick(e) {
-    e.preventDefault();
-    dispatch(getCountries());
-  }
+ 
+
   function handleFilterRegion(e) {
     dispatch(filterCountriesByRegion(e.target.value));
   }
@@ -65,16 +64,14 @@ export default function Home() {
     setCurrentPage(1);
     setOrder(`Ordenado ${e.target.value}`);
   }
-
-  ////////////////////
-  // function handlerClickAct (e){
-  //     e.preventDefault();
-  //     dispatch(getActivities())
-  //  }
-
-  function handleFilterActivities(e) {
+  // function handleFilterActivities(e) {
+  //   e.preventDefault()
+  //   dispatch(filterCreated(e.target.value))
+    // setOrder(e.target.value)
+  //}
+  function handleFilterActivities(e){
     dispatch(filterCreated(e.target.value));
-  }
+};
 
   return (
     <div className="pag">
@@ -131,16 +128,33 @@ export default function Home() {
             <button className="botForm">Crear Actividad </button>
           </Link>
         </div>
-        {/* <p>
-          Actividades creadas:
-          <select onChange={(e) => handleFilterActivities(e)}>
-            {activities.map((e) => (
-              <option value={e.name} key={e.id}>
-                {e.name}{" "}
+
+
+        <div>
+                        <div >Filter by activities</div>
+                        <select onChange = {e => handleFilterActivities(e)}>
+                            {
+                                activities && activities.map(e => <option value = {e.name} key = {e.id}>{e.name}</option>)
+                            }
+                        </select>
+                    </div>
+       
+          {/* <div>
+        <select onChange={e => handleFilterActivities(e)}>
+          <option >Filtrar por act</option>
+          {activities &&
+            activities.map(el => <option key ={el.name} value={el.name}>{el.name}</option>)}
+        </select>
+      </div> */}
+
+          {/* <select onChange={e => handleFilterActivities(e)}>
+            { activities && activities.map(e => 
+              <option key={e.id} value={e.name} > 
+                {e.name}
               </option>
-            ))}
-          </select>
-        </p> */}
+            )}
+          </select> */}
+      
       </div>
       <div className="grid">
         {currentCountries &&

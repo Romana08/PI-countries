@@ -8,7 +8,7 @@ export default function LandingPage(){
     return (
         <div className='Landing'>
             <div className='saludo'>
-            <h1>Bienvenidos</h1>
+            <h1>Bienvenidxs</h1>
             <Link to="/home" style={{ textDecoration: 'none' }}>
               <button className='boton'>Ingresar</button>
             </Link></div>

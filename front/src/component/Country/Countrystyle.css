@@ -1,7 +1,6 @@
 
 .box{
     background-color: rgba(53, 3, 73, 0.637);
-
     border-radius: 3%;
     border: solid 2px #0a0a0a;
     box-shadow: 10px 10px 20px 1px rgba(112, 112, 112, 0.2);
@@ -9,13 +8,13 @@
     /* margin-left: 2%;
     margin-top: 2%;
     margin-right: 2%; */
-    padding: 20px 0px;
+    padding: 20px 90px;
     /* grid-template-columns: 1fr 1fr; */
     grid-template-rows: 1fr;
     align-items: center;
 }
 .image {
-    margin: 2%;
+    margin: 20%;
 }
 .name{
     color: rgb(212, 173, 252);
@@ -25,7 +24,7 @@
 }
 
 .contein{
-    text-align: left;
+    text-align: center;
     /* font-family: "ge body"; */
     font-size: 16%;
     margin: 0px;

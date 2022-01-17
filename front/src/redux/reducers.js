@@ -17,9 +17,7 @@ import {
     countries : [],
     allCountries : [],
     activities: [],
-    allActivities: [],
     detail: [], 
-
     orderCountries: []
  };
  const reducer = (state = inicialState, action) => {
@@ -46,12 +44,10 @@ import {
                 }; 
 
             case FILTER_CREATED : 
-            const allActivities = state.allActivities
-            // const createdFilter = action.payload === "name" ? allActivities.filter( el => el.createInDb) :  allActivities.filter(el => !el.createInDb) 
-            const createdFilter = action.payload === 'name' ? allActivities.filter( el => el.name) :  allActivities.filter(el => !el.name) 
             return {
                 ...state,
-                activities: action.payload === "All" ? state.allActivities : createdFilter          
+                countries: state.allCountries.filter( c => c.activities.some(el => 
+                    el.name === action.payload))
             }
           
             case GET_COUNTRIES_NAME: 
@@ -93,10 +89,10 @@ import {
                 case ORDER_BY_COUNTRY_POPULATION:
                     let sortarrayp = action.payload === "population_asc" ?
                     state.countries.sort(function (a,b){
-                        if(a.population > b.population){
+                        if(a.population < b.population){
                             return 1
                         }
-                        if(a.population < b.population){
+                        if(a.population > b.population){
                             return -1
                         }
                         if(a.population === b.population){
@@ -104,10 +100,10 @@ import {
                         }
                     }): 
                     state.countries.sort(function (a,b){
-                        if(a.population < b.population){
+                        if(a.population > b.population){
                             return 1
                         }
-                        if(a.population > b.population){
+                        if(a.population < b.population){
                             return -1
                         }
                         if(a.population === b.population){
