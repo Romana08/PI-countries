@@ -6,17 +6,20 @@ const router = Router();
 
 
 
-router.get('/countries', async function(req, res, next) {
+router.get('/countries', async function(req, res) {
   const {name} = req.query; 
   if(!name){
-    const countries = await Country.findAll();
+    const countries = await Country.findAll( {include: {model : Activity}});
+    
     res.json(countries)
   } 
   const allCountries = await Country.findAll({
     where: {
       name: {
         [Op.iLike]: `%${name}%`
-      }
+
+      },
+        // include: {model : Activity}
     }
   })
   res.json(allCountries);

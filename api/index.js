@@ -28,7 +28,7 @@ const preloader = async () => {
 
     for (let country of countries.data) {
 
-      let {cca3, name, flags, capital, region, subregion, area, population} = country;
+      let {cca3, name, flags, capital, region, subregion, area, population , altSpellings } = country;
       let [countryRes, created] = await Country.findOrCreate({
         where: {
           id: cca3,
@@ -40,6 +40,7 @@ const preloader = async () => {
           subregion: subregion? subregion : null, 
           capital: capital ? capital[0] : null,
           population: population,
+          altSpellings: altSpellings ? altSpellings[0] : null, 
           area,
         }  
       });
